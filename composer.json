@@ -1,0 +1,17 @@
+{
+    "name": "inji/task.inji.ru",
+    "authors": [
+        {
+            "name": "inji",
+            "email": "inji@task.inji.ru.dev"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "twbs/bootstrap": "3.*",
+        "components/jquery": "2.1.*",
+        "components/jqueryui": "1.11.*",
+        "needim/noty": "2.3.*",
+        "ckeditor/ckeditor": "4.*"
+    }
+}
