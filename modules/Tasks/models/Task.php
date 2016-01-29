@@ -27,7 +27,7 @@ class Task extends \Model
         'project_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'project'],
         'task_status_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'status'],
         'user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'user'],
-        'resp_user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'user'],
+        'resp_user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'responsible'],
     ];
     static $dataManagers = [
         'manager' => [
