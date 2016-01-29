@@ -40,7 +40,7 @@ class Task extends \Model
             'map' => [
                 ['name'],
                 ['date_start', 'date_end'],
-                ['project_id','task_status_id'],
+                ['project_id', 'task_status_id'],
             ]
         ]
     ];
@@ -65,7 +65,9 @@ class Task extends \Model
 
     function beforeSave()
     {
-        $this->user_id = \Users\User::$cur->id;
+        if (!$this->user_id) {
+            $this->user_id = \Users\User::$cur->id;
+        }
     }
 
 }
