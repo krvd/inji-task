@@ -17,5 +17,4 @@ class TasksController extends Controller
     {
         $this->view->page();
     }
-
 }

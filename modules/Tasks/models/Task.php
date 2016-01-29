@@ -17,7 +17,8 @@ class Task extends \Model
         'user_id' => 'Creator',
         'date_create' => 'Create date',
         'task_status_id' => 'Status',
-        'project_id' => 'Project'
+        'project_id' => 'Project',
+        'resp_user_id' => 'Responsible user',
     ];
     static $cols = [
         'name' => ['type' => 'text'],
@@ -25,13 +26,15 @@ class Task extends \Model
         'date_end' => ['type' => 'dateTime'],
         'project_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'project'],
         'task_status_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'status'],
-        'user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'user']
+        'user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'user'],
+        'resp_user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'user'],
     ];
     static $dataManagers = [
         'manager' => [
             'name' => 'Tasks',
-            'cols' => ['name', 'project_id', 'task_status_id', 'date_start', 'date_end', 'user_id', 'date_create'],
-            'filters' => ['project_id', 'task_status_id']
+            'cols' => ['name', 'project_id', 'task_status_id', 'date_start', 'date_end', 'user_id', 'resp_user_id', 'date_create', ],
+            'filters' => ['project_id', 'task_status_id', 'resp_user_id',],
+            'rowButtonsWidget' => 'Tasks\Task/adminButtons'
         ]
     ];
     static $forms = [
@@ -41,6 +44,7 @@ class Task extends \Model
                 ['name'],
                 ['date_start', 'date_end'],
                 ['project_id','task_status_id'],
+                ['resp_user_id'],
             ]
         ]
     ];
@@ -59,13 +63,18 @@ class Task extends \Model
             'project' => [
                 'model' => 'Tasks\Project',
                 'col' => 'project_id'
-            ]
+            ],
+            'responsible' => [
+                'model' => 'Users\User',
+                'col' => 'resp_user_id'
+            ],
         ];
     }
 
     function beforeSave()
     {
-        $this->user_id = \Users\User::$cur->id;
+        if (!$this->user_id)
+            $this->user_id = \Users\User::$cur->id;
     }
 
 }
