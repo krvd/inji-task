@@ -8,7 +8,7 @@ return [
                     'ai' => '2'
                 ],
                 'Item' => [
-                    'ai' => '8'
+                    'ai' => '10'
                 ]
             ],
             'Menu' => [
@@ -67,6 +67,20 @@ return [
                     'Menu_id' => '1',
                     'parent_id' => '6',
                     'id' => '7'
+                ],
+                '7' => [
+                    'name' => 'Пользователи',
+                    'href' => '/admin/users/user',
+                    'Menu_id' => '1',
+                    'parent_id' => '0',
+                    'id' => '8'
+                ],
+                '8' => [
+                    'name' => 'Соц. сети',
+                    'href' => '/admin/users/social',
+                    'Menu_id' => '1',
+                    'parent_id' => '8',
+                    'id' => '9'
                 ]
             ]
         ]
