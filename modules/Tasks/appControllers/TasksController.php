@@ -22,15 +22,15 @@ class TasksController extends Controller
         $task = Tasks\Task::get((int) $taskId);
         $result = new Server\Result();
         if ($task) {
-            if ($task->task_status_id == 2) {
-                $task->task_status_id = 3;
+            if ($task->task_status_id == 1) {
+                $task->task_status_id = 2;
                 $task->resp_user_id = \Users\User::$cur->id;
                 $task->save();
                 $result->successMsg = 'Задача начата';
                 $result->send();
-            } elseif ($task->task_status_id == 1) {
-                $result->content = 'Задача уже завершена';
             } elseif ($task->task_status_id == 3) {
+                $result->content = 'Задача уже завершена';
+            } elseif ($task->task_status_id == 2) {
                 $result->content = 'Задача уже выполняется';
             }
         } else {
@@ -48,15 +48,15 @@ class TasksController extends Controller
             if ($task->resp_user_id != \Users\User::$cur->id)
                 $result->content = 'Вы не работаете над этой задачей';
             else {
-                if ($task->task_status_id == 3) {
-                    $task->task_status_id = 1;
+                if ($task->task_status_id == 2) {
+                    $task->task_status_id = 3;
                     $task->date_end = date('Y-m-d H:i:s');
                     $task->save();
                     $result->successMsg = 'Задача выполнена!';
                     $result->send();
-                } elseif ($task->task_status_id == 1) {
+                } elseif ($task->task_status_id == 3) {
                     $result->content = 'Задача уже завершена';
-                } elseif ($task->task_status_id == 2) {
+                } elseif ($task->task_status_id == 1) {
                     $result->content = 'Задача еще ни кем не выполняется';
                 }
             }
