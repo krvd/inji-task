@@ -1,7 +1,7 @@
 <?php
 $user_id = \Users\User::$cur->id;
 
-if ($item->task_status_id == 2) {
+if ($item->task_status_id == 1) {
     ?>
     <a onclick="inji.Server.request({
         url: '/tasks/startTask/<?= $item->id; ?>',
@@ -11,7 +11,7 @@ if ($item->task_status_id == 2) {
         return false;
         " href ='#' class="btn btn-xs btn-primary">Начать</a>
     <?php
-} elseif ($item->task_status_id == 3 && $item->resp_user_id = $user_id) {
+} elseif ($item->task_status_id == 2 && $item->resp_user_id = $user_id) {
 ?>
     <a onclick="inji.Server.request({
         url: '/tasks/finishTask/<?= $item->id; ?>',
