@@ -25,6 +25,7 @@ class TasksController extends Controller
             if ($task->task_status_id == 1) {
                 $task->task_status_id = 2;
                 $task->resp_user_id = \Users\User::$cur->id;
+                $task->date_start = date('Y-m-d H:i:s');
                 $task->save();
                 $result->successMsg = 'Задача начата';
                 $result->send();
