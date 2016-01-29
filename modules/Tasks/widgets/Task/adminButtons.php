@@ -13,11 +13,21 @@ if ($item->task_status_id == 1) {
        <?php
    } elseif ($item->task_status_id == 2 && $item->resp_user_id = $user_id) {
        ?>
-    <a onclick="inji.Server.request({
-                url: '/tasks/finishTask/<?= $item->id; ?>',
-                success: function () {
-                  inji.Ui.dataManagers.reloadAll();
-                }});
+    <a onclick="inji.Ui.requestInfo({
+                header: 'Tell about your results',
+                'inputs': {
+                  'results': {type: 'text', label: 'Results'}
+                },
+                btn: 'Complete'
+              }, function (data) {
+                inji.Server.request({
+                  url: '/tasks/finishTask/<?= $item->id; ?>',
+                  data: data,
+                  success: function () {
+                    inji.Ui.dataManagers.reloadAll();
+                  }
+                });
+              });
               return false;
        " href ='#' class="btn btn-xs btn-primary">Завершить</a>
     <?php

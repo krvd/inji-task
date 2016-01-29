@@ -20,10 +20,12 @@ class Task extends \Model
         'project_id' => 'Project',
         'resp_user_id' => 'Responsible user',
         'description' => 'Description',
+        'results' => 'Results',
     ];
     static $cols = [
         'name' => ['type' => 'text'],
         'description' => ['type' => 'textarea'],
+        'results' => ['type' => 'textarea'],
         'date_start' => ['type' => 'dateTime'],
         'date_end' => ['type' => 'dateTime'],
         'project_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'project'],
@@ -47,7 +49,8 @@ class Task extends \Model
                 ['date_start', 'date_end'],
                 ['project_id', 'task_status_id'],
                 ['resp_user_id'],
-                ['description']
+                ['description'],
+                ['results']
             ]
         ]
     ];
