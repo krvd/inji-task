@@ -2,9 +2,9 @@
 return [
     'modules' => [
         '0' => 'Files',
-        '1' => 'Access',
-        '2' => 'Users',
-        '3' => 'Tasks'
+        '3' => 'Tasks',
+        '4' => 'Access',
+        '5' => 'Users'
     ],
     'defaultModule' => 'Tasks',
     'site' => [

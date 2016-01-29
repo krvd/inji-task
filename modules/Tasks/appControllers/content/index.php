@@ -5,7 +5,7 @@
     $categoryManager->draw([
         'filters' => [
             'task_status_id' => [
-                'value' => [1,2]
+                'value' => [1, 2]
             ]
         ]
     ]);
