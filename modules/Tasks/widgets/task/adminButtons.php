@@ -4,7 +4,7 @@ $user_id = \Users\User::$cur->id;
 if ($item->task_status_id == 2) {
     ?>
     <a onclick="inji.Server.request({
-        url: '/admin/tasks/startTask/<?= $item->id; ?>',
+        url: '/tasks/startTask/<?= $item->id; ?>',
         success: function () {
         inji.Ui.dataManagers.reloadAll();
         }});
@@ -14,7 +14,7 @@ if ($item->task_status_id == 2) {
 } elseif ($item->task_status_id == 3 && $item->resp_user_id = $user_id) {
 ?>
     <a onclick="inji.Server.request({
-        url: '/admin/tasks/finishTask/<?= $item->id; ?>',
+        url: '/tasks/finishTask/<?= $item->id; ?>',
         success: function () {
         inji.Ui.dataManagers.reloadAll();
         }});
