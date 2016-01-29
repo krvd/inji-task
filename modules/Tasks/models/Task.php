@@ -19,9 +19,11 @@ class Task extends \Model
         'task_status_id' => 'Status',
         'project_id' => 'Project',
         'resp_user_id' => 'Responsible user',
+        'description' => 'Description',
     ];
     static $cols = [
         'name' => ['type' => 'text'],
+        'description' => ['type' => 'textarea'],
         'date_start' => ['type' => 'dateTime'],
         'date_end' => ['type' => 'dateTime'],
         'project_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'project'],
@@ -32,7 +34,7 @@ class Task extends \Model
     static $dataManagers = [
         'manager' => [
             'name' => 'Tasks',
-            'cols' => ['name', 'project_id', 'task_status_id', 'date_start', 'date_end', 'user_id', 'resp_user_id', 'date_create', ],
+            'cols' => ['name', 'project_id', 'task_status_id', 'date_start', 'date_end', 'user_id', 'resp_user_id', 'date_create'],
             'filters' => ['project_id', 'task_status_id', 'resp_user_id',],
             'rowButtonsWidget' => 'Tasks\Task/adminButtons'
         ]
@@ -43,8 +45,9 @@ class Task extends \Model
             'map' => [
                 ['name'],
                 ['date_start', 'date_end'],
-                ['project_id','task_status_id'],
+                ['project_id', 'task_status_id'],
                 ['resp_user_id'],
+                ['description']
             ]
         ]
     ];
