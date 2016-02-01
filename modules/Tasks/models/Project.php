@@ -19,11 +19,12 @@ class Project extends \Model
         'name' => ['type' => 'text'],
         'task' => ['type' => 'dataManager', 'relation' => 'tasks'],
         'user_id' => ['type' => 'select', 'source' => 'relation', 'relation' => 'user'],
+        'rel_users' => ['type' => 'dataManager', 'source' => 'relation', 'relation' => 'users'],
     ];
     static $dataManagers = [
         'manager' => [
             'name' => 'Projects',
-            'cols' => ['name', 'task', 'user_id', 'date_create'],
+            'cols' => ['name', 'task', 'user_id', 'date_create', 'rel_users'],
         ]
     ];
     static $forms = [
@@ -31,6 +32,7 @@ class Project extends \Model
             'name' => 'Project',
             'map' => [
                 ['name'],
+                ['rel_users'],
             ]
         ]
     ];
@@ -46,6 +48,11 @@ class Project extends \Model
                 'type' => 'many',
                 'model' => 'Tasks\Task',
                 'col' => 'project_id'
+            ],
+            'users' => [
+                'type' => 'relModel',
+                'relModel' => 'Tasks\UserRel',
+                'model' => 'Users\User'
             ],
         ];
     }
