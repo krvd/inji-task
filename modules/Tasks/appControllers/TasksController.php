@@ -17,6 +17,7 @@ class TasksController extends Controller
     {
         $this->view->page();
     }
+
     function startTaskAction($taskId = 0)
     {
         $task = Tasks\Task::get((int) $taskId);
@@ -52,6 +53,9 @@ class TasksController extends Controller
                 if ($task->task_status_id == 2) {
                     $task->task_status_id = 3;
                     $task->date_end = date('Y-m-d H:i:s');
+                    if (!empty($_GET['results'])) {
+                        $task->results = htmlspecialchars($_GET['results']);
+                    }
                     $task->save();
                     $result->successMsg = 'Задача выполнена!';
                     $result->send();
@@ -61,8 +65,7 @@ class TasksController extends Controller
                     $result->content = 'Задача еще ни кем не выполняется';
                 }
             }
-        }
-        else
+        } else
             $result->content = 'Задача не найдена';
 
         $result->success = false;
